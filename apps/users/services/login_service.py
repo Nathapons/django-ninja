@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
-from apps.users.schemas.login_schema import LoginUserSchema
-
 
 def render_user_page_service(request):
     return render(request, 'login.html')
@@ -13,6 +11,12 @@ def user_login_service(request, username, password, remember):
 
     if user is not None:
         login(request, user)
+        if remember:
+            # Remember in 8 hrs
+            request.session.set_expiry(8 * 60 * 60)
+        else:
+            # Session expires when browser is closed
+            request.session.set_expiry(0)
 
         success_html = """
         <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
