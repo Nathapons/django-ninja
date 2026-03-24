@@ -1,45 +1,21 @@
-from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render
-from ninja import Router
+from ninja import Router, Form
+
+from apps.users.services.login_service import render_user_page_service, \
+    user_login_service
+from apps.users.schemas.login_schema import LoginUserSchema
 
 
 user_router = Router()
 
-@user_router.api_operation(['GET'], '/')
+@user_router.get('/', url_name='user_login_page')
 def user_login_view(request):
-    return render(request, 'login.html')
+    return render_user_page_service(request)
 
-@user_router.api_operation(['POST'], '/login')
-def user_login(request):
-    # HTMX POST — authenticate and return an HTML fragment
-    username = request.POST.get('username', '').strip()
-    password = request.POST.get('password', '').strip()
-
-    user = authenticate(request, username=username, password=password)
-
-    if user is not None:
-        login(request, user)
-        # Success fragment: HTMX will inject this into #login-response
-        # You can also add hx-redirect here if you want a full page redirect
-        success_html = """
-        <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
-            <span class="material-symbols-outlined text-green-600 text-xl">check_circle</span>
-            <span>Login successful! Redirecting…</span>
-        </div>
-        <script>setTimeout(() => { window.location.href = '/'; }, 1000);</script>
-        """
-        response = HttpResponse(success_html)
-        return response
-    else:
-        # Error fragment: HTMX will inject this into #login-response
-        error_html = """
-        <div class="flex items-center gap-3 p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm font-medium">
-            <span class="material-symbols-outlined text-red-600 text-xl">error</span>
-            <span>Invalid username or password. Please try again.</span>
-        </div>
-        """
-        return HttpResponse(error_html, status=401)
+@user_router.post('/login', url_name='user_login')
+def user_login(request, data: LoginUserSchema = Form()):
+    return user_login_service(request, data.username, data.password, data.remember)
 
 @user_router.api_operation(['GET', 'POST'], '/register')
 def user_register(request):
@@ -76,8 +52,12 @@ def user_register(request):
             username=username, 
             password=password, 
             first_name=first_name, 
-            last_name=last_name
+            last_name=last_name,
+            is_active=False,
+            is_superuser=False,
         )
+        user.set_password(password)
+        user.save()
         # Success fragment
         success_html = """
         <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
