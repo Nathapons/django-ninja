@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login | IE Plastic Lab</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e6e9e8",
+                        "on-secondary-fixed-variant": "#2f4c49",
+                        "primary": "#00534e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#71361d",
+                        "primary-container": "#016d67",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#9ef1e9",
+                        "surface-tint": "#006a64",
+                        "secondary-fixed-dim": "#adcdc9",
+                        "on-background": "#191c1c",
+                        "inverse-on-surface": "#eff1f0",
+                        "surface-bright": "#f8faf9",
+                        "tertiary-fixed": "#ffdbce",
+                        "inverse-surface": "#2e3131",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6e7978",
+                        "tertiary": "#74381f",
+                        "surface-dim": "#d8dada",
+                        "surface-container-highest": "#e1e3e2",
+                        "secondary-container": "#c6e6e2",
+                        "surface-container-low": "#f2f4f3",
+                        "on-secondary-fixed": "#01201e",
+                        "tertiary-container": "#914f34",
+                        "inverse-primary": "#82d5cd",
+                        "on-tertiary-container": "#ffd3c3",
+                        "on-tertiary-fixed": "#370e00",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eceeed",
+                        "secondary": "#466461",
+                        "surface": "#f8faf9",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb599",
+                        "on-primary-container": "#98ebe3",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#00504b",
+                        "primary-fixed-dim": "#82d5cd",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bec9c7",
+                        "on-secondary-container": "#4b6865",
+                        "secondary-fixed": "#c9e9e5",
+                        "on-surface": "#191c1c",
+                        "background": "#f8faf9",
+                        "on-surface-variant": "#3e4947",
+                        "on-primary-fixed": "#00201e",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e1e3e2"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .machined-button {
+            background: linear-gradient(135deg, #00534e 0%, #016d67 100%);
+        }
+
+        /* Hide htmx indicator by default; show when request is in-flight */
+        .htmx-indicator {
+            display: none;
+        }
+        .htmx-request .htmx-indicator,
+        .htmx-request.htmx-indicator {
+            display: inline-flex;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface min-h-screen">
+    <main class="h-screen w-full flex overflow-hidden">
+        <!-- Visual Brand Side (Left 40%) -->
+        <div
+            class="hidden md:flex md:w-[40%] bg-primary relative overflow-hidden flex-col justify-between p-16 lg:p-24">
+            <!-- Background texture similar to Register page -->
+            <div class="absolute inset-0 opacity-15"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkLlFP_S6YUCwI6yMP4I7StohEOImQeCE8mJiWYKcADUbwa7IG8faL1NKhOPm4kFOMgo-z-KMXG7h8_xpL60cbAnX27hGYC3Z6x-X-SSC4cABCohT41keBxt2LXN2ann4nHVwZeHyhz2V80HAukHX1ZCiKD1NzRogxr4BycboxkFk__7kzlUaUzHdrqPXeGFHFsptpPpEwtDWh8aWO5f5cwpJvbR01NktB-IinuWU0JCHmLeSqjaOxMmfLCeEywSsumUV0wM-wN8by'); background-size: cover; background-position: center;">
+            </div>
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-12">
+                    <img alt="KU Logo" class="h-12 w-12 object-contain filter brightness-0 invert"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_-4TQ56OhkUNWSp8yIgllgBYEz301w86buQ&amp;s" />
+                    <div class="flex flex-col">
+                        <span
+                            class="font-headline font-black text-white uppercase text-sm tracking-widest leading-none">Kasetsart
+                            University</span>
+                        <span
+                            class="font-label text-primary-fixed text-[10px] tracking-wide mt-1 uppercase opacity-80">Department
+                            of Industrial Engineering</span>
+                    </div>
+                </div>
+                <h1
+                    class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.9] mb-8">
+                    IE-KPS
+                </h1>
+                <h3
+                    class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.9] mb-8">
+                    PLASTIC ENGINEERING LAB
+                </h3>
+            </div>
+            <div class="relative z-10">
+                <p class="text-on-primary-container text-lg font-medium leading-relaxed max-w-sm opacity-90">
+                    Utilizing precision defect analysis and industrial alchemy to redefine plastic manufacturing
+                    standards at Kasetsart University.
+                </p>
+            </div>
+        </div>
+        <!-- Login Form Side (Right 60%) -->
+        <div
+            class="w-full md:w-[60%] bg-surface-container-lowest flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 overflow-y-auto">
+            <div class="w-full max-w-md">
+                <!-- Mobile Branding Only -->
+                <div class="md:hidden flex flex-col items-center mb-10 text-center">
+                    <img alt="KU Logo" class="h-12 w-12 mb-4"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy19S11GMMLRwLk55i08H8hkBDJh4XAPXRuP-gy9rgwMDCiKLwPPsN_LuxahOhiUuhcek3OfJDZAQ6QdTMZv0eWwXoBNX-Y8g5hpiw2C3ku1fQM5hDJ2v5_fy7_HhmpXt83d_d_yQdBZrJK6kh2mmkBrtQ7MJu9XCqh_lJWHVcg5Cn2N0e8fZFg2IPPigXl8YcVkbYdieS7C__gQ24lISdbLPS4x3mKOUHhWltYiecMcGh2aontFDlOwHiz9uWWSwnl_2fHHeyiuA" />
+                    <h2 class="font-headline font-bold text-2xl text-primary tracking-tight">IE Plastic Lab</h2>
+                </div>
+                <div class="mb-12">
+                    <h2 class="font-headline font-extrabold text-4xl text-primary tracking-tight mb-4">Login</h2>
+                    <div class="h-1.5 w-16 bg-primary-container"></div>
+                    <p class="text-outline text-sm mt-6 font-medium">Authorized personnel only. Enter your credentials
+                        to access the laboratory ledger.</p>
+                </div>
+
+                <!-- HTMX Response Message Area -->
+                <div id="login-response" class="mb-4"></div>
+
+                <!-- HTMX Form: posts to /api/login, injects response into #login-response -->
+                <form
+                    hx-post="/login"
+                    hx-target="#login-response"
+                    hx-swap="innerHTML"
+                    hx-indicator="#login-spinner"
+                    class="space-y-8">
+                    {% csrf_token %}
+                    <div class="space-y-2">
+                        <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
+                            for="username">Username</label>
+                        <div class="relative group">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">account_circle</span>
+                            <input
+                                class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
+                                id="username" name="username" placeholder="Enter your lab ID" type="text" required />
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
+                                for="password">Password</label>
+                            <a class="text-xs font-bold text-primary hover:underline uppercase tracking-tighter"
+                                href="#">Forgot Password?</a>
+                        </div>
+                        <div class="relative group">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock</span>
+                            <input
+                                class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
+                                id="password" name="password" placeholder="••••••••" type="password" required />
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary"
+                            id="remember" name="remember" type="checkbox" />
+                        <label class="text-sm text-on-surface-variant font-medium" for="remember">Maintain session for 8
+                            hours</label>
+                    </div>
+                    <div class="pt-4">
+                        <button
+                            class="machined-button w-full py-5 px-6 text-white font-headline font-bold rounded-lg shadow-xl shadow-teal-900/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 uppercase tracking-widest text-sm flex items-center justify-center gap-3"
+                            type="submit">
+                            <!-- Spinner: visible only while HTMX request is in-flight -->
+                            <span id="login-spinner" class="htmx-indicator">
+                                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                </svg>
+                            </span>
+                            <span>Sign In</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-12 pt-8 border-t border-surface-container-high text-center">
+                    <p class="text-base text-outline font-medium">
+                        Don't have an account?
+                        <a class="text-primary-container font-bold hover:underline ml-1" href="#">Register for
+                            access.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- HTMX CDN (placed before closing body tag) -->
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+</body>
+
+</html>
