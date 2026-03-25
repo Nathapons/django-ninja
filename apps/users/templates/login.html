@@ -90,6 +90,7 @@
         .htmx-indicator {
             display: none;
         }
+
         .htmx-request .htmx-indicator,
         .htmx-request.htmx-indicator {
             display: inline-flex;
@@ -102,19 +103,23 @@
         <!-- Visual Brand Side (Left 40%) -->
         <div
             class="hidden md:flex md:w-[40%] bg-primary relative overflow-hidden flex-col justify-between p-16 lg:p-24">
-            <!-- Background texture similar to Register page -->
-            <div class="absolute inset-0 opacity-15"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkLlFP_S6YUCwI6yMP4I7StohEOImQeCE8mJiWYKcADUbwa7IG8faL1NKhOPm4kFOMgo-z-KMXG7h8_xpL60cbAnX27hGYC3Z6x-X-SSC4cABCohT41keBxt2LXN2ann4nHVwZeHyhz2V80HAukHX1ZCiKD1NzRogxr4BycboxkFk__7kzlUaUzHdrqPXeGFHFsptpPpEwtDWh8aWO5f5cwpJvbR01NktB-IinuWU0JCHmLeSqjaOxMmfLCeEywSsumUV0wM-wN8by'); background-size: cover; background-position: center;">
+            <!-- Background texture from updated design -->
+            <div class="absolute inset-0 opacity-30"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtflwU4kDbhs231J-nQMdnhJAD_8NjKTXbm9oITqGYIWYrw_QHv7qQMwh6Chf_k2PfIqz1iZ0jXf_JGg5c7RwSa4vbtG-avY3CIWrcxnryVFtzr0R5GTNISPAtoX4CfoUNgiZKGYmtHZuEYM6YzTGKU0Ubl_DLbG2hsZF0gNLRy8tXXjBWHxFrF0bzw87-eIO76x0ozov37lc4owQmttzf3Q7clvXNoy4IK3tV9D0hV3TFpSTtfJop6iN9SA9rQrTpGokLPHQxEivd'); background-size: cover; background-position: center center;">
             </div>
             <div class="relative z-10">
-                <div class="relative z-10">
-                    <p class="font-label font-bold text-primary-fixed text-xs tracking-widest uppercase mb-8 opacity-80">
-                        Industrial Alchemist
-                    </p>
-                    <h1 class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.95]">
-                        Precision<br>Plastic Lab<br>Login
-                    </h1>
+                <div class="flex items-center gap-3 mb-12">
+                    <div class="flex flex-col">
+                        <span class="font-headline font-black text-white uppercase text-sm tracking-widest leading-none"
+                            style="letter-spacing: 1.4px;">INDUSTRIAL ALCHEMIST</span>
+                        <span
+                            class="font-label text-primary-fixed text-[10px] tracking-wide mt-1 uppercase opacity-80">Precision
+                            Plastic Lab</span>
+                    </div>
                 </div>
+                <h1
+                    class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.9] mb-8">
+                    Precision Plastic Lab Login</h1>
             </div>
             <div class="relative z-10">
                 <p class="text-on-primary-container text-lg font-medium leading-relaxed max-w-sm opacity-90">
@@ -143,12 +148,8 @@
                 <!-- HTMX Response Message Area -->
                 <div id="login-response" class="mb-4"></div>
 
-                <!-- HTMX Form: posts to /api/login, injects response into #login-response -->
-                <form
-                    hx-post="/login"
-                    hx-target="#login-response"
-                    hx-swap="innerHTML"
-                    hx-indicator="#login-spinner"
+                <!-- HTMX Form -->
+                <form hx-post="/login" hx-target="#login-response" hx-swap="innerHTML" hx-indicator="#login-spinner"
                     class="space-y-8">
                     {% csrf_token %}
                     <div class="space-y-2">
@@ -175,9 +176,11 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <input class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary"
+                            <input
+                                class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary"
                                 id="remember" name="remember" type="checkbox" />
-                            <label class="text-sm text-on-surface-variant font-medium" for="remember">Remember Me</label>
+                            <label class="text-sm text-on-surface-variant font-medium" for="remember">Remember
+                                Me</label>
                         </div>
                         <a class="text-xs font-bold text-primary hover:underline uppercase tracking-tighter"
                             href="#">Forgot Password?</a>
@@ -189,7 +192,8 @@
                             <!-- Spinner: visible only while HTMX request is in-flight -->
                             <span id="login-spinner" class="htmx-indicator">
                                 <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                                 </svg>
                             </span>
@@ -201,15 +205,18 @@
                 <div class="mt-12 pt-8 border-t border-surface-container-high text-center">
                     <p class="text-base text-outline font-medium">
                         Don't have an account?
-                        <a class="text-primary-container font-bold hover:underline ml-1" href="/register">Register Account</a>
+                        <a class="text-primary-container font-bold hover:underline ml-1"
+                            href="/register">Register</a> Account
                     </p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- HTMX CDN (placed before closing body tag) -->
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <!-- HTMX CDN -->
+    <script src="https://unpkg.com/htmx.org@2.0.4"
+        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
