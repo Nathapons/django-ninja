@@ -4,7 +4,7 @@ from ninja import Router, Form
 
 from apps.users.services.login_service import render_user_page_service, \
     user_login_service
-from apps.users.schemas.login_schema import LoginUserModelSchema
+from apps.users.schemas.login_schema import LoginUserSchema
 
 
 user_router = Router()
@@ -14,8 +14,7 @@ def user_login_view(request):
     return render_user_page_service(request)
 
 @user_router.post('/login', url_name='user_login')
-def user_login(request, data: LoginUserModelSchema = Form()):
-    print(f'{data.__dict__ = }')
+def user_login(request, data: LoginUserSchema = Form()):
     return user_login_service(request, data.username, data.password, data.remember)
 
 @user_router.api_operation(['GET', 'POST'], '/register')
