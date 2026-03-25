@@ -5,6 +5,9 @@ from ninja import Router, Form
 from apps.users.services.login_service import render_user_page_service, \
     user_login_service
 from apps.users.schemas.login_schema import LoginUserSchema
+from apps.users.schemas.forgot_password_schema import ForgotPasswordSchema
+from apps.users.services.forgot_service import render_forgot_password_page_service, \
+    forgot_password_service
 
 
 user_router = Router()
@@ -74,3 +77,12 @@ def user_register(request):
                 <span>An error occurred: {str(e)}</span>
             </div>
         """, status=500)
+
+
+@user_router.get('/forgot-password', url_name='user_forgot_password_page')
+def user_forgot_password_view(request):
+    return render_forgot_password_page_service(request)
+
+@user_router.post('/forgot-password', url_name='user_forgot_password')
+def user_forgot_password(request, data: ForgotPasswordSchema = Form()):
+    return forgot_password_service(request, data.email)
