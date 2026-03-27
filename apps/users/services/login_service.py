@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+from django.urls import reverse
 
 
 def render_user_page_service(request):
@@ -18,12 +19,12 @@ def user_login_service(request, username, password, remember):
             # Session expires when browser is closed
             request.session.set_expiry(0)
 
-        success_html = """
+        success_html = f"""
         <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
             <span class="material-symbols-outlined text-green-600 text-xl">check_circle</span>
             <span>Login successful! Redirecting…</span>
         </div>
-        <script>setTimeout(() => { window.location.href = '/'; }, 1000);</script>
+        <script>setTimeout(() => {{ window.location.href = '{reverse("api-1.0.0:get_dashboard_page")}'; }}, 1000);</script>
         """
         response = HttpResponse(success_html)
         return response
