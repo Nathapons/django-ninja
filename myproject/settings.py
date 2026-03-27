@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
 
 DJANGO_APPS = [
     'apps.users',
+    'apps.dashboard',
 ]
 
 INSTALLED_APPS = DJANGO_SETTINGS + THIRD_PARTY_APPS + DJANGO_APPS
