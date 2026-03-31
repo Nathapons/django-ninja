@@ -7,6 +7,9 @@ from django.urls import reverse
 def render_user_page_service(request):
     return render(request, 'login.html')
 
+def render_unauthorized_page_service(request):
+    return render(request, 'unauthorized.html')
+
 def user_login_service(request, username, password, remember):
     user = authenticate(request, username=username, password=password)
 

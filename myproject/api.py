@@ -13,4 +13,4 @@ api = NinjaAPI(
 )
 
 api.add_router("", user_router)
-api.add_router("", dashboard_router, auth=django_auth)
+api.add_router("", dashboard_router)
