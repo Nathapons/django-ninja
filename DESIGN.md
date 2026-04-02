@@ -1,3 +1,83 @@
+# Precision Plastic Lab Design System
+
+This document outlines the core tokens, colors, typography, and design rules for the **Precision Plastic Lab** application.
+
+## Core Tokens
+
+### Typography
+- **Headline Font**: Manrope
+- **Body Font**: Inter
+- **Label Font**: Inter
+
+### Interface Defaults
+- **Color Mode**: Light
+- **Roundness**: ROUND_FOUR
+
+---
+
+## Color Palette
+
+### Primary
+- **Primary**: `#00534e`
+- **On Primary**: `#ffffff`
+- **Primary Container**: `#016d67`
+- **On Primary Container**: `#98ebe3`
+- **Primary Fixed**: `#9ef1e9`
+- **On Primary Fixed**: `#00201e`
+- **Primary Fixed Dim**: `#82d5cd`
+- **On Primary Fixed Variant**: `#00504b`
+
+### Secondary
+- **Secondary**: `#466461`
+- **On Secondary**: `#ffffff`
+- **Secondary Container**: `#c6e6e2`
+- **On Secondary Container**: `#4b6865`
+- **Secondary Fixed**: `#c9e9e5`
+- **On Secondary Fixed**: `#01201e`
+- **Secondary Fixed Dim**: `#adcdc9`
+- **On Secondary Fixed Variant**: `#2f4c49`
+
+### Tertiary
+- **Tertiary**: `#74381f`
+- **On Tertiary**: `#ffffff`
+- **Tertiary Container**: `#914f34`
+- **On Tertiary Container**: `#ffd3c3`
+- **Tertiary Fixed**: `#ffdbce`
+- **On Tertiary Fixed**: `#370e00`
+- **Tertiary Fixed Dim**: `#ffb599`
+- **On Tertiary Fixed Variant**: `#71361d`
+
+### Surface & Background
+- **Background**: `#f8faf9`
+- **On Background**: `#191c1c`
+- **Surface**: `#f8faf9`
+- **On Surface**: `#191c1c`
+- **Surface Variant**: `#e1e3e2`
+- **On Surface Variant**: `#3e4947`
+- **Surface Tint**: `#006a64`
+- **Surface Dim**: `#d8dada`
+- **Surface Bright**: `#f8faf9`
+- **Surface Container Lowest**: `#ffffff`
+- **Surface Container Low**: `#f2f4f3`
+- **Surface Container**: `#eceeed`
+- **Surface Container High**: `#e6e9e8`
+- **Surface Container Highest**: `#e1e3e2`
+- **Inverse Surface**: `#2e3131`
+- **Inverse On Surface**: `#eff1f0`
+- **Inverse Primary**: `#82d5cd`
+
+### Status / Error
+- **Error**: `#ba1a1a`
+- **On Error**: `#ffffff`
+- **Error Container**: `#ffdad6`
+- **On Error Container**: `#93000a`
+
+### Outline
+- **Outline**: `#6e7978`
+- **Outline Variant**: `#bec9c7`
+
+---
+
 # Design System Document: The Industrial Alchemist
 
 ## 1. Overview & Creative North Star
