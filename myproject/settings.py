@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
 
 DJANGO_APPS = [
     'apps.users',
+    'apps.dashboard',
 ]
 
 INSTALLED_APPS = DJANGO_SETTINGS + THIRD_PARTY_APPS + DJANGO_APPS
@@ -128,3 +129,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+APPEND_SLASH = True

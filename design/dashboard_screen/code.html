@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Industrial Alchemist | Lab Ledger Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#eceeed",
+              "secondary-fixed": "#c9e9e5",
+              "on-primary-container": "#98ebe3",
+              "primary-fixed-dim": "#82d5cd",
+              "tertiary": "#74381f",
+              "secondary-container": "#c6e6e2",
+              "on-primary": "#ffffff",
+              "background": "#f8faf9",
+              "surface-container-low": "#f2f4f3",
+              "surface-bright": "#f8faf9",
+              "primary-container": "#016d67",
+              "on-primary-fixed-variant": "#00504b",
+              "surface-container-high": "#e6e9e8",
+              "outline-variant": "#bec9c7",
+              "inverse-on-surface": "#eff1f0",
+              "surface-tint": "#006a64",
+              "on-secondary-container": "#4b6865",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#370e00",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#ffd3c3",
+              "surface-container-highest": "#e1e3e2",
+              "inverse-primary": "#82d5cd",
+              "on-surface": "#191c1c",
+              "inverse-surface": "#2e3131",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e1e3e2",
+              "surface": "#f8faf9",
+              "primary-fixed": "#9ef1e9",
+              "outline": "#6e7978",
+              "secondary-fixed-dim": "#adcdc9",
+              "surface-dim": "#d8dada",
+              "tertiary-fixed": "#ffdbce",
+              "on-secondary-fixed-variant": "#2f4c49",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-background": "#191c1c",
+              "on-tertiary-fixed-variant": "#71361d",
+              "tertiary-container": "#914f34",
+              "primary": "#00534e",
+              "on-primary-fixed": "#00201e",
+              "on-surface-variant": "#3e4947",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#466461",
+              "on-secondary-fixed": "#01201e",
+              "tertiary-fixed-dim": "#ffb599",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 flex flex-col h-full py-6 bg-emerald-50/50 border-r border-emerald-100/20 font-['Inter'] text-sm font-medium">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h1 class="font-['Manrope'] font-black text-emerald-900 text-lg leading-none">Lab Ledger</h1>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">Quality Control v2.4</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard (Active) -->
+<a class="bg-emerald-100 text-emerald-900 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Detection Results -->
+<a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Detection Results</span>
+</a>
+<!-- Image Upload -->
+<a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span>Image Upload</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1">
+<a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Support</span>
+</a>
+<a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 ml-64 p-8">
+<!-- TopAppBar Contextual -->
+<header class="flex justify-between items-center mb-10">
+<div>
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-primary">Dashboard</h2>
+<p class="text-outline font-label mt-1">Real-time Quality Assurance Overview</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a laboratory technician in a clean white environment with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuF-bKEznjjzust2X2BiVo8PaLn4keFv1J_OF5GpR-2STOS3tcogKUPZ9BdZFYdT9lENf0cS1S5EVvjI0qwglPWOVz_4N1_aXXmDUk_15GUX9SmT77H__1nIfTxsiMTC7ceZVbMvX0F3RbQALrYCm3xmtLncgxNziVKlNAbegtgV8dl8iedJlyRmRnHxmV2F2WoGMGb7gEWmL-50QYox4yvX3kGd5wfqPS1jAyQi7eXuHM_Oh6yxyx7wqTkiHL28UtQ_ZH97_wj7o"/>
+</div>
+</div>
+</header>
+<!-- Summary Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Total Inspections</span>
+<span class="material-symbols-outlined text-primary" data-icon="biotech">biotech</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black font-headline">12,482</span>
+<span class="text-emerald-600 text-xs font-bold">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-4 border-secondary shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Average Defect Rate</span>
+<span class="material-symbols-outlined text-secondary" data-icon="percent">percent</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black font-headline">2.14%</span>
+<span class="text-tertiary text-xs font-bold">-0.5%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-4 border-tertiary shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="text-outline font-label text-xs uppercase tracking-wider">Recent Flagged Batch</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-bold font-headline">Batch #882-A</span>
+<span class="text-xs text-outline font-label">Polypropylene / Shift B</span>
+</div>
+</div>
+</div>
+<!-- Main Analytics Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Section 1: QC P-Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-bold font-headline text-on-surface">P-Chart: Inspection Quality Control</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-xs font-label text-outline">Defect Rate</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-0.5 bg-tertiary/40"></div>
+<span class="text-xs font-label text-outline">Control Limits</span>
+</div>
+</div>
+</div>
+<!-- Line Chart Visualization (SVG) -->
+<div class="relative h-[300px] w-full mt-4">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 300">
+<!-- Control Limits (UCL / LCL) -->
+<line opacity="0.3" stroke="#74381f" stroke-dasharray="8,4" stroke-width="1" x1="0" x2="1000" y1="50" y2="50"></line>
+<line opacity="0.3" stroke="#74381f" stroke-dasharray="8,4" stroke-width="1" x1="0" x2="1000" y1="250" y2="250"></line>
+<!-- Grid Lines -->
+<line stroke="#eceeed" stroke-width="1" x1="0" x2="1000" y1="150" y2="150"></line>
+<!-- P-Chart Data Line -->
+<path d="M0,180 L100,160 L200,210 L300,120 L400,140 L500,60 L600,155 L700,190 L800,130 L900,150 L1000,110" fill="none" stroke="#016d67" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Data Points -->
+<circle cx="0" cy="180" fill="#016d67" r="4"></circle>
+<circle cx="100" cy="160" fill="#016d67" r="4"></circle>
+<circle cx="200" cy="210" fill="#016d67" r="4"></circle>
+<circle cx="300" cy="120" fill="#016d67" r="4"></circle>
+<circle cx="400" cy="140" fill="#016d67" r="4"></circle>
+<circle cx="500" cy="60" fill="#ba1a1a" r="6"></circle> <!-- Flagged Outlier -->
+<circle cx="600" cy="155" fill="#016d67" r="4"></circle>
+<circle cx="700" cy="190" fill="#016d67" r="4"></circle>
+<circle cx="800" cy="130" fill="#016d67" r="4"></circle>
+<circle cx="900" cy="150" fill="#016d67" r="4"></circle>
+<circle cx="1000" cy="110" fill="#016d67" r="4"></circle>
+</svg>
+<!-- Labels -->
+<div class="absolute top-[40px] right-0 text-[10px] font-bold text-tertiary opacity-60">UCL: 4.5%</div>
+<div class="absolute bottom-[40px] right-0 text-[10px] font-bold text-tertiary opacity-60">LCL: 0.5%</div>
+</div>
+<div class="flex justify-between mt-4 px-2">
+<span class="text-[10px] font-label text-outline uppercase tracking-tighter">Batch seq. 0801</span>
+<span class="text-[10px] font-label text-outline uppercase tracking-tighter">Batch seq. 0825</span>
+</div>
+</div>
+<!-- Section 2: Defect Type Distribution -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="text-xl font-bold font-headline text-on-surface mb-8">Defect Type Distribution</h3>
+<div class="flex flex-col items-center">
+<!-- Semi-Circle / Donut Chart Visualization (Pure CSS/HTML) -->
+<div class="relative w-48 h-48 rounded-full border-[16px] border-surface-container flex items-center justify-center mb-8">
+<div class="absolute inset-0 rounded-full border-[16px] border-primary" style="clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 50% 100%);"></div>
+<div class="absolute inset-0 rounded-full border-[16px] border-secondary" style="clip-path: polygon(50% 50%, 50% 100%, 0% 100%, 0% 70%);"></div>
+<div class="absolute inset-0 rounded-full border-[16px] border-tertiary" style="clip-path: polygon(50% 50%, 0% 70%, 0% 0%, 50% 0%);"></div>
+<div class="text-center">
+<span class="block text-2xl font-black font-headline">268</span>
+<span class="text-[10px] font-label text-outline uppercase">Total Def</span>
+</div>
+</div>
+<!-- Chart Legend -->
+<div class="w-full space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-primary rounded-sm"></div>
+<span class="text-sm font-medium text-on-surface-variant">Flash (ครีบ)</span>
+</div>
+<span class="text-sm font-bold">52%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-tertiary rounded-sm"></div>
+<span class="text-sm font-medium text-on-surface-variant">Burn Mark (รอยไหม้)</span>
+</div>
+<span class="text-sm font-bold">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-secondary rounded-sm"></div>
+<span class="text-sm font-medium text-on-surface-variant">Short Shot (ไม่เต็ม)</span>
+</div>
+<span class="text-sm font-bold">20%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Batch Table (The Lab Ledger) -->
+<div class="mt-10 bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/10">
+<div class="p-6 flex justify-between items-center bg-surface-container-low/30">
+<h3 class="text-lg font-bold font-headline">Recent Material Logs</h3>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                    View Full Ledger <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 label-md text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">Batch ID</th>
+<th class="px-6 py-4 label-md text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">Material Type</th>
+<th class="px-6 py-4 label-md text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">Timestamp</th>
+<th class="px-6 py-4 label-md text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">Operator</th>
+<th class="px-6 py-4 label-md text-on-surface-variant font-bold uppercase tracking-widest text-[10px]">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold font-headline text-sm">#PB-9021-X</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-[10px] font-bold">POLYPROPYLENE</span>
+</td>
+<td class="px-6 py-4 text-sm text-outline">Oct 24, 14:22</td>
+<td class="px-6 py-4 text-sm font-medium">Dr. Arisara K.</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1 text-emerald-600 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span> PASSED
+                            </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold font-headline text-sm">#PB-8820-A</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-[10px] font-bold">HDPE</span>
+</td>
+<td class="px-6 py-4 text-sm text-outline">Oct 24, 12:45</td>
+<td class="px-6 py-4 text-sm font-medium">S. Wittaya</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1 text-tertiary text-xs font-bold">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">error</span> FLAGGED
+                            </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 font-bold font-headline text-sm">#PB-8819-C</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-[10px] font-bold">POLYPROPYLENE</span>
+</td>
+<td class="px-6 py-4 text-sm text-outline">Oct 24, 11:30</td>
+<td class="px-6 py-4 text-sm font-medium">Dr. Arisara K.</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1 text-emerald-600 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span> PASSED
+                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+</body></html>

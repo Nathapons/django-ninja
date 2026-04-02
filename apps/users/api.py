@@ -2,7 +2,7 @@ from django.shortcuts import render
 from ninja import Router, Form
 
 from apps.users.services.login_service import render_user_page_service, \
-    user_login_service
+    user_login_service, render_unauthorized_page_service
 from apps.users.schemas.login_schema import LoginUserSchema
 from apps.users.schemas.forgot_password_schema import ForgotPasswordSchema
 from apps.users.schemas.register_schema import RegisterUserSchema
@@ -15,6 +15,10 @@ user_router = Router()
 @user_router.get('/', url_name='user_login_page')
 def user_login_view(request):
     return render_user_page_service(request)
+
+@user_router.get('/unauthorized', url_name='user_unauthorized_page')
+def user_unauthorized_view(request):
+    return render_unauthorized_page_service(request)
 
 @user_router.post('/login', url_name='user_login')
 def user_login(request, data: LoginUserSchema = Form()):
