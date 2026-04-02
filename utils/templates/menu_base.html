@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                colors: {
+                  "surface-container": "#eceeed",
+                  "secondary-fixed": "#c9e9e5",
+                  "on-primary-container": "#98ebe3",
+                  "primary-fixed-dim": "#82d5cd",
+                  "tertiary": "#74381f",
+                  "secondary-container": "#c6e6e2",
+                  "on-primary": "#ffffff",
+                  "background": "#f8faf9",
+                  "surface-container-low": "#f2f4f3",
+                  "surface-bright": "#f8faf9",
+                  "primary-container": "#016d67",
+                  "on-primary-fixed-variant": "#00504b",
+                  "surface-container-high": "#e6e9e8",
+                  "outline-variant": "#bec9c7",
+                  "inverse-on-surface": "#eff1f0",
+                  "surface-tint": "#006a64",
+                  "on-secondary-container": "#4b6865",
+                  "on-error-container": "#93000a",
+                  "on-tertiary-fixed": "#370e00",
+                  "on-secondary": "#ffffff",
+                  "on-tertiary-container": "#ffd3c3",
+                  "surface-container-highest": "#e1e3e2",
+                  "inverse-primary": "#82d5cd",
+                  "on-surface": "#191c1c",
+                  "inverse-surface": "#2e3131",
+                  "on-tertiary": "#ffffff",
+                  "surface-variant": "#e1e3e2",
+                  "surface": "#f8faf9",
+                  "primary-fixed": "#9ef1e9",
+                  "outline": "#6e7978",
+                  "secondary-fixed-dim": "#adcdc9",
+                  "surface-dim": "#d8dada",
+                  "tertiary-fixed": "#ffdbce",
+                  "on-secondary-fixed-variant": "#2f4c49",
+                  "error-container": "#ffdad6",
+                  "on-error": "#ffffff",
+                  "on-background": "#191c1c",
+                  "on-tertiary-fixed-variant": "#71361d",
+                  "tertiary-container": "#914f34",
+                  "primary": "#00534e",
+                  "on-primary-fixed": "#00201e",
+                  "on-surface-variant": "#3e4947",
+                  "surface-container-lowest": "#ffffff",
+                  "secondary": "#466461",
+                  "on-secondary-fixed": "#01201e",
+                  "tertiary-fixed-dim": "#ffb599",
+                  "error": "#ba1a1a"
+                },
+                fontFamily: {
+                  "headline": ["Manrope"],
+                  "body": ["Inter"],
+                  "label": ["Inter"]
+                },
+                borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+              },
+            },
+          }
+        </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            body { font-family: 'Inter', sans-serif; }
+            h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+            .glass-panel {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(12px);
+            }
+        </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+    <!-- SideNavBar Component -->
+    <aside class="h-screen w-64 fixed left-0 top-0 z-40 flex flex-col py-6 bg-emerald-50/50 border-r border-emerald-100/20 font-['Inter'] text-sm font-medium">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">science</span>
+                </div>
+                <div>
+                    <h1 class="font-['Manrope'] font-black text-emerald-900 text-lg leading-none">Lab Ledger</h1>
+                    <p class="text-[10px] text-outline uppercase tracking-widest mt-1">Quality Control v2.4</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <!-- Dashboard (Active) -->
+            <a class="bg-emerald-100 text-emerald-900 rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all translate-x-1" href="{% url 'api-1.0.0:get_dashboard_page' %}">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <!-- Detection Results -->
+            <a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+                <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                <span>Detection Results</span>
+            </a>
+            <!-- Image Upload -->
+            <a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+                <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+                <span>Image Upload</span>
+            </a>
+        </nav>
+        <div class="mt-auto space-y-1">
+            <a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="#">
+                <span class="material-symbols-outlined" data-icon="help">help</span>
+                <span>Support</span>
+            </a>
+            <a class="text-emerald-700 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-emerald-100/50 transition-all" href="{% url 'api-1.0.0:user_logout' %}">
+                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
