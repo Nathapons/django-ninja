@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
+from django.conf import settings
 
 
 def render_forgot_password_page_service(request):
@@ -24,7 +25,7 @@ def forgot_password_service(request, username):
             send_mail(
                 subject='Password Reset',
                 message='Please enable HTML to view this email.',
-                from_email=None,
+                from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[user.email],
                 html_message=email_detail,
                 fail_silently=True,
