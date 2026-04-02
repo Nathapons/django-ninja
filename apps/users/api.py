@@ -8,6 +8,7 @@ from apps.users.schemas.forgot_password_schema import ForgotPasswordSchema
 from apps.users.schemas.register_schema import RegisterUserSchema
 from apps.users.services.forgot_service import render_forgot_password_page_service, \
     forgot_password_service
+from apps.users.services.logout_service import user_logout_service
 
 
 user_router = Router()
@@ -40,5 +41,8 @@ def user_forgot_password_view(request):
 
 @user_router.post('/forgot-password', url_name='user_forgot_password')
 def user_forgot_password(request, data: ForgotPasswordSchema = Form()):
-    print(data.email)
     return forgot_password_service(request, data.email)
+
+@user_router.get('/logout', url_name='user_logout')
+def user_logout(request):
+    return user_logout_service(request)
