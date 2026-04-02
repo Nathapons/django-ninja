@@ -1,16 +1,16 @@
 from ninja import NinjaAPI
-from ninja.security import django_auth
 
 from apps.users.api import user_router
 from apps.dashboard.api import dashboard_router
+from utils.session_auth import CustomSessionAuth
 
 
 api = NinjaAPI(
-    title="Hospital Management System", 
+    title="Plastic Surgery Clinic Management System", 
     version="1.0.0",
-    description="Hospital Management System Web Application",
+    description="Plastic Surgery Clinic Management System",
     docs_url=None,
 )
 
 api.add_router("", user_router)
-api.add_router("", dashboard_router)
+api.add_router("", dashboard_router, auth=CustomSessionAuth())
