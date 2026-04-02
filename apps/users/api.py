@@ -40,4 +40,5 @@ def user_forgot_password_view(request):
 
 @user_router.post('/forgot-password', url_name='user_forgot_password')
 def user_forgot_password(request, data: ForgotPasswordSchema = Form()):
+    print(data.email)
     return forgot_password_service(request, data.email)
