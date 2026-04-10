@@ -15,3 +15,7 @@ db.sqlite3
 
 # Environment variables
 .env
+
+# AI Agent
+CLAUDE.md
+GEMINI.md
