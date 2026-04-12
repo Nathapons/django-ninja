@@ -10,30 +10,24 @@ def render_forgot_password_page_service(request):
     return render(request, 'forgot_password.html')
 
 
-def forgot_password_service(request, username):
-    user = User.objects.filter(username=username).first()
-    if not user:
-        return HttpResponse("""
-            <div class="flex items-center gap-3 p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm font-medium">
-                <span class="material-symbols-outlined text-red-600 text-xl">error</span>
-                <span>Username not found.</span>
-            </div>
-        """, status=400)
-    else:
-        if user.email:
-            email_detail = render_to_string('forgot_password_email.html', {'user': user})
-            send_mail(
-                subject='Password Reset',
-                message='Please enable HTML to view this email.',
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[user.email],
-                html_message=email_detail,
-                fail_silently=True,
-            )
-            
-        return HttpResponse("""
-            <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
-                <span class="material-symbols-outlined text-green-600 text-xl">check_circle</span>
-                <span>Password reset link has been sent to your email.</span>
-            </div>
-        """)    
+_FORGOT_SUCCESS_HTML = """
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm font-medium">
+        <span class="material-symbols-outlined text-green-600 text-xl">check_circle</span>
+        <span>If this email is registered, a password reset link has been sent.</span>
+    </div>
+"""
+
+
+def forgot_password_service(email):
+    user = User.objects.filter(email=email).first()
+    if user:
+        email_detail = render_to_string('forgot_password_email.html', {'user': user})
+        send_mail(
+            subject='Password Reset',
+            message='Please enable HTML to view this email.',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            html_message=email_detail,
+            fail_silently=True,
+        )
+    return HttpResponse(_FORGOT_SUCCESS_HTML)    
