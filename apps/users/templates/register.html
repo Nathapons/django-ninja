@@ -1,249 +1,143 @@
-<!DOCTYPE html>
+{% extends "auth_base.html" %}
 
-<html class="light" lang="en">
+{% block title %}Register{% endblock %}
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Register | IE Plastic Lab</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface-container-high": "#e6e9e8",
-                        "on-secondary-fixed-variant": "#2f4c49",
-                        "primary": "#00534e",
-                        "error": "#ba1a1a",
-                        "on-tertiary-fixed-variant": "#71361d",
-                        "primary-container": "#016d67",
-                        "on-error": "#ffffff",
-                        "primary-fixed": "#9ef1e9",
-                        "surface-tint": "#006a64",
-                        "secondary-fixed-dim": "#adcdc9",
-                        "on-background": "#191c1c",
-                        "inverse-on-surface": "#eff1f0",
-                        "surface-bright": "#f8faf9",
-                        "tertiary-fixed": "#ffdbce",
-                        "inverse-surface": "#2e3131",
-                        "surface-container-lowest": "#ffffff",
-                        "outline": "#6e7978",
-                        "tertiary": "#74381f",
-                        "surface-dim": "#d8dada",
-                        "surface-container-highest": "#e1e3e2",
-                        "secondary-container": "#c6e6e2",
-                        "surface-container-low": "#f2f4f3",
-                        "on-secondary-fixed": "#01201e",
-                        "tertiary-container": "#914f34",
-                        "inverse-primary": "#82d5cd",
-                        "on-tertiary-container": "#ffd3c3",
-                        "on-tertiary-fixed": "#370e00",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#eceeed",
-                        "secondary": "#466461",
-                        "surface": "#f8faf9",
-                        "on-error-container": "#93000a",
-                        "tertiary-fixed-dim": "#ffb599",
-                        "on-primary-container": "#98ebe3",
-                        "on-tertiary": "#ffffff",
-                        "on-primary-fixed-variant": "#00504b",
-                        "primary-fixed-dim": "#82d5cd",
-                        "error-container": "#ffdad6",
-                        "outline-variant": "#bec9c7",
-                        "on-secondary-container": "#4b6865",
-                        "secondary-fixed": "#c9e9e5",
-                        "on-surface": "#191c1c",
-                        "background": "#f8faf9",
-                        "on-surface-variant": "#3e4947",
-                        "on-primary-fixed": "#00201e",
-                        "on-secondary": "#ffffff",
-                        "surface-variant": "#e1e3e2"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                },
-            },
-        }
-    </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+{% block brand_panel %}
+<div class="hidden md:flex md:w-[40%] bg-primary-container p-12 lg:p-16 xl:p-24 flex-col justify-between text-white relative">
+    <div class="absolute inset-0 opacity-15"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtflwU4kDbhs231J-nQMdnhJAD_8NjKTXbm9oITqGYIWYrw_QHv7qQMwh6Chf_k2PfIqz1iZ0jXf_JGg5c7RwSa4vbtG-avY3CIWrcxnryVFtzr0R5GTNISPAtoX4CfoUNgiZKGYmtHZuEYM6YzTGKU0Ubl_DLbG2hsZF0gNLRy8tXXjBWHxFrF0bzw87-eIO76x0ozov37lc4owQmttzf3Q7clvXNoy4IK3tV9D0hV3TFpSTtfJop6iN9SA9rQrTpGokLPHQxEivd'); background-size: cover; background-position: center;">
+    </div>
+    <div class="relative z-10">
+        <span class="font-headline font-black uppercase text-sm tracking-widest opacity-90">Industrial
+            Alchemist</span>
+        <h2 class="font-headline font-bold text-4xl lg:text-5xl mt-6 leading-tight">Precision Plastic Lab
+            Registration</h2>
+    </div>
+    <div class="relative z-10">
+        <p class="text-lg opacity-80 font-light leading-relaxed max-w-md">
+            Join our digital repository for advanced defect detection and material analysis.
+        </p>
+    </div>
+</div>
+{% endblock %}
 
-        .machined-button {
-            background: linear-gradient(135deg, #00534e 0%, #016d67 100%);
-        }
+{% block form_panel %}
+<div class="w-full md:w-[60%] bg-white flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 overflow-y-auto">
+    <div class="w-full max-w-xl">
 
-        .htmx-indicator {
-            display: none;
-        }
+        <!-- Mobile Branding Only -->
+        <div class="md:hidden flex flex-col items-center mb-10 text-center">
+            <img alt="KU Logo" class="h-12 w-12 mb-4"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy19S11GMMLRwLk55i08H8hkBDJh4XAPXRuP-gy9rgwMDCiKLwPPsN_LuxahOhiUuhcek3OfJDZAQ6QdTMZv0eWwXoBNX-Y8g5hpiw2C3ku1fQM5hDJ2v5_fy7_HhmpXt83d_d_yQdBZrJK6kh2mmkBrtQ7MJu9XCqh_lJWHVcg5Cn2N0e8fZFg2IPPigXl8YcVkbYdieS7C__gQ24lISdbLPS4x3mKOUHhWltYiecMcGh2aontFDlOwHiz9uWWSwnl_2fHHeyiuA" />
+            <h2 class="font-headline font-bold text-2xl text-primary tracking-tight">IE Plastic Lab</h2>
+        </div>
 
-        .htmx-request .htmx-indicator,
-        .htmx-request.htmx-indicator {
-            display: inline-flex;
-        }
-    </style>
-</head>
+        <div class="mb-12">
+            <h1 class="font-headline font-extrabold text-4xl text-primary tracking-tight">Create Account</h1>
+            <div class="h-1.5 w-16 bg-primary-container mt-4"></div>
+        </div>
 
-<body class="bg-surface font-body text-on-surface min-h-screen">
-    <main class="h-screen w-full flex overflow-hidden">
+        <!-- HTMX Response Area -->
+        <div id="register-response" class="mb-4"></div>
 
-        <!-- Side Visual Branding (Left 40%) -->
-        <div class="hidden md:flex md:w-[40%] bg-primary-container p-12 lg:p-16 xl:p-24 flex-col justify-between text-white relative">
-            <div class="absolute inset-0 opacity-15"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtflwU4kDbhs231J-nQMdnhJAD_8NjKTXbm9oITqGYIWYrw_QHv7qQMwh6Chf_k2PfIqz1iZ0jXf_JGg5c7RwSa4vbtG-avY3CIWrcxnryVFtzr0R5GTNISPAtoX4CfoUNgiZKGYmtHZuEYM6YzTGKU0Ubl_DLbG2hsZF0gNLRy8tXXjBWHxFrF0bzw87-eIO76x0ozov37lc4owQmttzf3Q7clvXNoy4IK3tV9D0hV3TFpSTtfJop6iN9SA9rQrTpGokLPHQxEivd'); background-size: cover; background-position: center;">
+        <!-- HTMX Form -->
+        <form hx-post="/register" hx-target="#register-response" hx-swap="innerHTML"
+            hx-indicator="#register-spinner" class="space-y-8">
+            {% csrf_token %}
+
+            <!-- Personal Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label
+                        class="block font-label text-xs font-bold text-outline tracking-wider uppercase">First
+                        Name</label>
+                    <input
+                        class="w-full px-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                        name="first_name" id="first_name" placeholder="John" type="text" required />
+                </div>
+                <div class="space-y-2">
+                    <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Last
+                        Name</label>
+                    <input
+                        class="w-full px-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                        name="last_name" id="last_name" placeholder="Doe" type="text" required />
+                </div>
             </div>
-            <div class="relative z-10">
-                <span class="font-headline font-black uppercase text-sm tracking-widest opacity-90">Industrial
-                    Alchemist</span>
-                <h2 class="font-headline font-bold text-4xl lg:text-5xl mt-6 leading-tight">Precision Plastic Lab
-                    Registration</h2>
+
+            <!-- Student Number -->
+            <div class="space-y-2">
+                <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Student
+                    Number</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant text-xl">badge</span>
+                    <input
+                        class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                        name="student_number" id="student_number" placeholder="e.g. 64XXXXXXXX" type="text" />
+                </div>
             </div>
-            <div class="relative z-10">
-                <p class="text-lg opacity-80 font-light leading-relaxed max-w-md">
-                    Join our digital repository for advanced defect detection and material analysis.
+
+            <div class="h-px bg-surface-container-high w-full my-4"></div>
+
+            <!-- Credentials Row -->
+            <div class="space-y-2">
+                <label
+                    class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Username</label>
+                <div class="relative group">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">account_circle</span>
+                    <input
+                        class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                        name="username" id="username" placeholder="industrial_chemist_01" type="text" required />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label
+                        class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Password</label>
+                    <div class="relative group">
+                        <span
+                            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock</span>
+                        <input
+                            class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                            name="password" id="password" placeholder="••••••••" type="password" required />
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Confirm
+                        Password</label>
+                    <div class="relative group">
+                        <span
+                            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock_reset</span>
+                        <input
+                            class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
+                            name="confirm_password" id="confirm_password" placeholder="••••••••" type="password" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8">
+                <button
+                    class="machined-button w-full py-5 bg-primary-container text-white font-headline font-bold rounded-lg shadow-xl shadow-teal-900/20 hover:bg-primary transition-all active:scale-[0.99] flex justify-center items-center gap-3 text-lg"
+                    type="submit">
+                    <span id="register-spinner" class="htmx-indicator">
+                        <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                    </span>
+                    <span>Register</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+            <div class="text-center mt-8">
+                <p class="text-base text-outline font-medium">
+                    Already have an account?
+                    <a class="text-primary-container font-bold hover:underline" href="/">Login</a>
                 </p>
             </div>
-        </div>
-
-        <!-- Register Form Side (Right 60%) -->
-        <div
-            class="w-full md:w-[60%] bg-white flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 overflow-y-auto">
-            <div class="w-full max-w-xl">
-
-                <!-- Mobile Branding Only -->
-                <div class="md:hidden flex flex-col items-center mb-10 text-center">
-                    <img alt="KU Logo" class="h-12 w-12 mb-4"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy19S11GMMLRwLk55i08H8hkBDJh4XAPXRuP-gy9rgwMDCiKLwPPsN_LuxahOhiUuhcek3OfJDZAQ6QdTMZv0eWwXoBNX-Y8g5hpiw2C3ku1fQM5hDJ2v5_fy7_HhmpXt83d_d_yQdBZrJK6kh2mmkBrtQ7MJu9XCqh_lJWHVcg5Cn2N0e8fZFg2IPPigXl8YcVkbYdieS7C__gQ24lISdbLPS4x3mKOUHhWltYiecMcGh2aontFDlOwHiz9uWWSwnl_2fHHeyiuA" />
-                    <h2 class="font-headline font-bold text-2xl text-primary tracking-tight">IE Plastic Lab</h2>
-                </div>
-
-                <div class="mb-12">
-                    <h1 class="font-headline font-extrabold text-4xl text-primary tracking-tight">Create Account</h1>
-                    <div class="h-1.5 w-16 bg-primary-container mt-4"></div>
-                </div>
-
-                <!-- HTMX Response Area -->
-                <div id="register-response" class="mb-4"></div>
-
-                <!-- HTMX Form -->
-                <form hx-post="/register" hx-target="#register-response" hx-swap="innerHTML"
-                    hx-indicator="#register-spinner" class="space-y-8">
-                    {% csrf_token %}
-
-                    <!-- Personal Info Row -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label
-                                class="block font-label text-xs font-bold text-outline tracking-wider uppercase">First
-                                Name</label>
-                            <input
-                                class="w-full px-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                name="first_name" id="first_name" placeholder="John" type="text" required />
-                        </div>
-                        <div class="space-y-2">
-                            <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Last
-                                Name</label>
-                            <input
-                                class="w-full px-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                name="last_name" id="last_name" placeholder="Doe" type="text" required />
-                        </div>
-                    </div>
-
-                    <!-- Student Number -->
-                    <div class="space-y-2">
-                        <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Student
-                            Number</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant text-xl">badge</span>
-                            <input
-                                class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                name="student_number" id="student_number" placeholder="e.g. 64XXXXXXXX" type="text" />
-                        </div>
-                    </div>
-
-                    <div class="h-px bg-surface-container-high w-full my-4"></div>
-
-                    <!-- Credentials Row -->
-                    <div class="space-y-2">
-                        <label
-                            class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Username</label>
-                        <div class="relative group">
-                            <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">account_circle</span>
-                            <input
-                                class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                name="username" id="username" placeholder="industrial_chemist_01" type="text" required />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label
-                                class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Password</label>
-                            <div class="relative group">
-                                <span
-                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock</span>
-                                <input
-                                    class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                    name="password" id="password" placeholder="••••••••" type="password" required />
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="block font-label text-xs font-bold text-outline tracking-wider uppercase">Confirm
-                                Password</label>
-                            <div class="relative group">
-                                <span
-                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock_reset</span>
-                                <input
-                                    class="w-full pl-12 pr-5 py-4 rounded bg-surface-container-low border-none focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all text-on-surface placeholder:text-outline-variant text-base"
-                                    name="confirm_password" id="confirm_password" placeholder="••••••••" type="password" required />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-8">
-                        <button
-                            class="machined-button w-full py-5 bg-primary-container text-white font-headline font-bold rounded-lg shadow-xl shadow-teal-900/20 hover:bg-primary transition-all active:scale-[0.99] flex justify-center items-center gap-3 text-lg"
-                            type="submit">
-                            <span id="register-spinner" class="htmx-indicator">
-                                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                                </svg>
-                            </span>
-                            <span>Register</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
-                    </div>
-                    <div class="text-center mt-8">
-                        <p class="text-base text-outline font-medium">
-                            Already have an account?
-                            <a class="text-primary-container font-bold hover:underline" href="/">Login</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- HTMX CDN -->
-    <script src="https://unpkg.com/htmx.org@2.0.4"
-        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+        </form>
+    </div>
+</div>
+{% endblock %}

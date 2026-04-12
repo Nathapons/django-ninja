@@ -1,238 +1,132 @@
-<!DOCTYPE html>
+{% extends "auth_base.html" %}
 
-<html class="light" lang="en">
+{% block title %}Login{% endblock %}
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Login | IE Plastic Lab</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface-container-high": "#e6e9e8",
-                        "on-secondary-fixed-variant": "#2f4c49",
-                        "primary": "#00534e",
-                        "error": "#ba1a1a",
-                        "on-tertiary-fixed-variant": "#71361d",
-                        "primary-container": "#016d67",
-                        "on-error": "#ffffff",
-                        "primary-fixed": "#9ef1e9",
-                        "surface-tint": "#006a64",
-                        "secondary-fixed-dim": "#adcdc9",
-                        "on-background": "#191c1c",
-                        "inverse-on-surface": "#eff1f0",
-                        "surface-bright": "#f8faf9",
-                        "tertiary-fixed": "#ffdbce",
-                        "inverse-surface": "#2e3131",
-                        "surface-container-lowest": "#ffffff",
-                        "outline": "#6e7978",
-                        "tertiary": "#74381f",
-                        "surface-dim": "#d8dada",
-                        "surface-container-highest": "#e1e3e2",
-                        "secondary-container": "#c6e6e2",
-                        "surface-container-low": "#f2f4f3",
-                        "on-secondary-fixed": "#01201e",
-                        "tertiary-container": "#914f34",
-                        "inverse-primary": "#82d5cd",
-                        "on-tertiary-container": "#ffd3c3",
-                        "on-tertiary-fixed": "#370e00",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#eceeed",
-                        "secondary": "#466461",
-                        "surface": "#f8faf9",
-                        "on-error-container": "#93000a",
-                        "tertiary-fixed-dim": "#ffb599",
-                        "on-primary-container": "#98ebe3",
-                        "on-tertiary": "#ffffff",
-                        "on-primary-fixed-variant": "#00504b",
-                        "primary-fixed-dim": "#82d5cd",
-                        "error-container": "#ffdad6",
-                        "outline-variant": "#bec9c7",
-                        "on-secondary-container": "#4b6865",
-                        "secondary-fixed": "#c9e9e5",
-                        "on-surface": "#191c1c",
-                        "background": "#f8faf9",
-                        "on-surface-variant": "#3e4947",
-                        "on-primary-fixed": "#00201e",
-                        "on-secondary": "#ffffff",
-                        "surface-variant": "#e1e3e2"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                },
-            },
-        }
-    </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+{% block extra_styles %}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .machined-button {
-            background: linear-gradient(135deg, #00534e 0%, #016d67 100%);
-        }
+.animate-show-form {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.5s forwards;
+}
+{% endblock %}
 
-        /* Hide htmx indicator by default; show when request is in-flight */
-        .htmx-indicator {
-            display: none;
-        }
-
-        .htmx-request .htmx-indicator,
-        .htmx-request.htmx-indicator {
-            display: inline-flex;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-show-form {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out 0.5s forwards;
-        }
-    </style>
-</head>
-
-<body class="bg-surface font-body text-on-surface min-h-screen">
-    <main class="h-screen w-full flex overflow-hidden">
-        <!-- Visual Brand Side (Left 40%) -->
-        <div
-            class="hidden md:flex md:w-[40%] bg-primary relative overflow-hidden flex-col justify-between p-16 lg:p-24">
-            <!-- Background texture from updated design -->
-            <div class="absolute inset-0 opacity-30"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtflwU4kDbhs231J-nQMdnhJAD_8NjKTXbm9oITqGYIWYrw_QHv7qQMwh6Chf_k2PfIqz1iZ0jXf_JGg5c7RwSa4vbtG-avY3CIWrcxnryVFtzr0R5GTNISPAtoX4CfoUNgiZKGYmtHZuEYM6YzTGKU0Ubl_DLbG2hsZF0gNLRy8tXXjBWHxFrF0bzw87-eIO76x0ozov37lc4owQmttzf3Q7clvXNoy4IK3tV9D0hV3TFpSTtfJop6iN9SA9rQrTpGokLPHQxEivd'); background-size: cover; background-position: center center;">
-            </div>
-            <div class="relative z-10">
-                <div class="flex items-center gap-3 mb-12">
-                    <div class="flex flex-col">
-                        <span class="font-headline font-black text-white uppercase text-sm tracking-widest leading-none"
-                            style="letter-spacing: 1.4px;">INDUSTRIAL ALCHEMIST</span>
-                        <span
-                            class="font-label text-primary-fixed text-[10px] tracking-wide mt-1 uppercase opacity-80">Precision
-                            Plastic Lab</span>
-                    </div>
-                </div>
-                <h1
-                    class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.9] mb-8">
-                    Precision Plastic Lab Login</h1>
-            </div>
-            <div class="relative z-10">
-                <p class="text-on-primary-container text-lg font-medium leading-relaxed max-w-sm opacity-90">
-                    Utilizing precision defect analysis and industrial alchemy to redefine plastic manufacturing
-                    standards
-                </p>
+{% block brand_panel %}
+<div class="hidden md:flex md:w-[40%] bg-primary relative overflow-hidden flex-col justify-between p-16 lg:p-24">
+    <div class="absolute inset-0 opacity-30"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtflwU4kDbhs231J-nQMdnhJAD_8NjKTXbm9oITqGYIWYrw_QHv7qQMwh6Chf_k2PfIqz1iZ0jXf_JGg5c7RwSa4vbtG-avY3CIWrcxnryVFtzr0R5GTNISPAtoX4CfoUNgiZKGYmtHZuEYM6YzTGKU0Ubl_DLbG2hsZF0gNLRy8tXXjBWHxFrF0bzw87-eIO76x0ozov37lc4owQmttzf3Q7clvXNoy4IK3tV9D0hV3TFpSTtfJop6iN9SA9rQrTpGokLPHQxEivd'); background-size: cover; background-position: center center;">
+    </div>
+    <div class="relative z-10">
+        <div class="flex items-center gap-3 mb-12">
+            <div class="flex flex-col">
+                <span class="font-headline font-black text-white uppercase text-sm tracking-widest leading-none"
+                    style="letter-spacing: 1.4px;">INDUSTRIAL ALCHEMIST</span>
+                <span
+                    class="font-label text-primary-fixed text-[10px] tracking-wide mt-1 uppercase opacity-80">Precision
+                    Plastic Lab</span>
             </div>
         </div>
-        <!-- Login Form Side (Right 60%) -->
-        <div
-            class="w-full md:w-[60%] bg-surface-container-lowest flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 overflow-y-auto">
-            <div class="w-full max-w-md animate-show-form">
-                <!-- Mobile Branding Only -->
-                <div class="md:hidden flex flex-col items-center mb-10 text-center">
-                    <img alt="KU Logo" class="h-12 w-12 mb-4"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy19S11GMMLRwLk55i08H8hkBDJh4XAPXRuP-gy9rgwMDCiKLwPPsN_LuxahOhiUuhcek3OfJDZAQ6QdTMZv0eWwXoBNX-Y8g5hpiw2C3ku1fQM5hDJ2v5_fy7_HhmpXt83d_d_yQdBZrJK6kh2mmkBrtQ7MJu9XCqh_lJWHVcg5Cn2N0e8fZFg2IPPigXl8YcVkbYdieS7C__gQ24lISdbLPS4x3mKOUHhWltYiecMcGh2aontFDlOwHiz9uWWSwnl_2fHHeyiuA" />
-                    <h2 class="font-headline font-bold text-2xl text-primary tracking-tight">IE Plastic Lab</h2>
-                </div>
-                <div class="mb-12">
-                    <h2 class="font-headline font-extrabold text-4xl text-primary tracking-tight mb-4">Login</h2>
-                    <div class="h-1.5 w-16 bg-primary-container"></div>
-                    <p class="text-outline text-sm mt-6 font-medium">Authorized personnel only. Enter your credentials
-                        to access the laboratory ledger.</p>
-                </div>
+        <h1
+            class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tighter leading-[0.9] mb-8">
+            Precision Plastic Lab Login</h1>
+    </div>
+    <div class="relative z-10">
+        <p class="text-on-primary-container text-lg font-medium leading-relaxed max-w-sm opacity-90">
+            Utilizing precision defect analysis and industrial alchemy to redefine plastic manufacturing
+            standards
+        </p>
+    </div>
+</div>
+{% endblock %}
 
-                <!-- HTMX Response Message Area -->
-                <div id="login-response" class="mb-4"></div>
+{% block form_panel %}
+<div class="w-full md:w-[60%] bg-surface-container-lowest flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 overflow-y-auto">
+    <div class="w-full max-w-md animate-show-form">
+        <!-- Mobile Branding Only -->
+        <div class="md:hidden flex flex-col items-center mb-10 text-center">
+            <img alt="KU Logo" class="h-12 w-12 mb-4"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKy19S11GMMLRwLk55i08H8hkBDJh4XAPXRuP-gy9rgwMDCiKLwPPsN_LuxahOhiUuhcek3OfJDZAQ6QdTMZv0eWwXoBNX-Y8g5hpiw2C3ku1fQM5hDJ2v5_fy7_HhmpXt83d_d_yQdBZrJK6kh2mmkBrtQ7MJu9XCqh_lJWHVcg5Cn2N0e8fZFg2IPPigXl8YcVkbYdieS7C__gQ24lISdbLPS4x3mKOUHhWltYiecMcGh2aontFDlOwHiz9uWWSwnl_2fHHeyiuA" />
+            <h2 class="font-headline font-bold text-2xl text-primary tracking-tight">IE Plastic Lab</h2>
+        </div>
+        <div class="mb-12">
+            <h2 class="font-headline font-extrabold text-4xl text-primary tracking-tight mb-4">Login</h2>
+            <div class="h-1.5 w-16 bg-primary-container"></div>
+            <p class="text-outline text-sm mt-6 font-medium">Authorized personnel only. Enter your credentials
+                to access the laboratory ledger.</p>
+        </div>
 
-                <!-- HTMX Form -->
-                <form hx-post="/login" hx-target="#login-response" hx-swap="innerHTML" hx-indicator="#login-spinner"
-                    class="space-y-8">
-                    {% csrf_token %}
-                    <div class="space-y-2">
-                        <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
-                            for="username">Username</label>
-                        <div class="relative group">
-                            <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">account_circle</span>
-                            <input
-                                class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
-                                id="username" name="username" placeholder="Enter your lab ID" type="text" required />
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
-                            for="password">Password</label>
-                        <div class="relative group">
-                            <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock</span>
-                            <input
-                                class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
-                                id="password" name="password" placeholder="••••••••" type="password" required />
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <input
-                                class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary"
-                                id="remember" name="remember" type="checkbox" />
-                            <label class="text-sm text-on-surface-variant font-medium" for="remember">Remember
-                                Me</label>
-                        </div>
-                        <a class="text-xs font-bold text-primary hover:underline uppercase tracking-tighter"
-                            href="/forgot-password">Forgot Password?</a>
-                    </div>
-                    <div class="pt-4">
-                        <button
-                            class="machined-button w-full py-5 px-6 text-white font-headline font-bold rounded-lg shadow-xl shadow-teal-900/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 uppercase tracking-widest text-sm flex items-center justify-center gap-3"
-                            type="submit">
-                            <!-- Spinner: visible only while HTMX request is in-flight -->
-                            <span id="login-spinner" class="htmx-indicator">
-                                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                                </svg>
-                            </span>
-                            <span>Sign In</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
-                    </div>
-                </form>
-                <div class="mt-12 pt-8 border-t border-surface-container-high text-center">
-                    <p class="text-base text-outline font-medium">
-                        Don't have an account?
-                        <a class="text-primary-container font-bold hover:underline ml-1"
-                            href="/register">Register</a>
-                    </p>
+        <!-- HTMX Response Message Area -->
+        <div id="login-response" class="mb-4"></div>
+
+        <!-- HTMX Form -->
+        <form hx-post="/login" hx-target="#login-response" hx-swap="innerHTML" hx-indicator="#login-spinner"
+            class="space-y-8">
+            {% csrf_token %}
+            <div class="space-y-2">
+                <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
+                    for="username">Username</label>
+                <div class="relative group">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">account_circle</span>
+                    <input
+                        class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
+                        id="username" name="username" placeholder="Enter your lab ID" type="text" required />
                 </div>
             </div>
+            <div class="space-y-2">
+                <label class="font-label font-bold text-xs text-outline uppercase tracking-wider block"
+                    for="password">Password</label>
+                <div class="relative group">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors text-xl">lock</span>
+                    <input
+                        class="w-full pl-12 pr-5 py-4 bg-surface-container-low border-none rounded focus:ring-2 focus:ring-primary-fixed focus:bg-white transition-all placeholder:text-outline-variant text-base"
+                        id="password" name="password" placeholder="••••••••" type="password" required />
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <input
+                        class="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary"
+                        id="remember" name="remember" type="checkbox" />
+                    <label class="text-sm text-on-surface-variant font-medium" for="remember">Remember
+                        Me</label>
+                </div>
+                <a class="text-xs font-bold text-primary hover:underline uppercase tracking-tighter"
+                    href="/forgot-password">Forgot Password?</a>
+            </div>
+            <div class="pt-4">
+                <button
+                    class="machined-button w-full py-5 px-6 text-white font-headline font-bold rounded-lg shadow-xl shadow-teal-900/20 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 uppercase tracking-widest text-sm flex items-center justify-center gap-3"
+                    type="submit">
+                    <span id="login-spinner" class="htmx-indicator">
+                        <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                    </span>
+                    <span>Sign In</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </form>
+        <div class="mt-12 pt-8 border-t border-surface-container-high text-center">
+            <p class="text-base text-outline font-medium">
+                Don't have an account?
+                <a class="text-primary-container font-bold hover:underline ml-1"
+                    href="/register">Register</a>
+            </p>
         </div>
-    </main>
-
-    <!-- HTMX CDN -->
-    <script src="https://unpkg.com/htmx.org@2.0.4"
-        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+    </div>
+</div>
+{% endblock %}
